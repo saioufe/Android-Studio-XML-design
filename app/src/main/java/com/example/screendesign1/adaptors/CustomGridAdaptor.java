@@ -26,7 +26,7 @@ public class CustomGridAdaptor extends ArrayAdapter<Items> {
             super(context, resource, objects);
             items_list = objects;
             custom_layout_id = resource;
-            Log.d("saioufe" ,"this is objects :  " + objects.size());
+
 
         }
 
@@ -56,7 +56,7 @@ public class CustomGridAdaptor extends ArrayAdapter<Items> {
 
             // get the item using the position param
             Items item = items_list.get(position);
-            Log.d("saioufe" ,"this is item name in :  " + position + " data : " + item.getText());
+
 
             imageView.setImageResource(item.getImage_id());
             textView.setText(item.getText());

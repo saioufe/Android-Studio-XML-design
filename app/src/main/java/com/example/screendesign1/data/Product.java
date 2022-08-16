@@ -2,6 +2,7 @@ package com.example.screendesign1.data;
 
 import android.media.Image;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
@@ -11,12 +12,22 @@ public class Product {
     private String numOfRecommandations;
     private List<Image> usersImages;
 
-    public Product(String name, Image image, double price, String numOfRecommandations, List<Image> usersImages) {
+    public Product(String name) {
         this.name = name;
-        this.image = image;
-        this.price = price;
-        this.numOfRecommandations = numOfRecommandations;
-        this.usersImages = usersImages;
+//        this.image = image;
+//        this.price = price;
+//        this.numOfRecommandations = numOfRecommandations;
+//        this.usersImages = usersImages;
+    }
+    private static int lastProductsId = 0;
+    public static ArrayList<Product> createProductsList(int numProducts) {
+        ArrayList<Product> products = new ArrayList<Product>();
+
+        for (int i = 1; i <= numProducts; i++) {
+            products.add(new Product("product " + ++lastProductsId));
+        }
+
+        return products;
     }
 
     public String getName() {
