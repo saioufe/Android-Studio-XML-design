@@ -1,4 +1,4 @@
-package com.example.screendesign1;
+package com.example.screendesign1.data;
 
 
 public class Items
@@ -26,7 +26,7 @@ public class Items
         this.text = text;
     }
 
-    Items(int img, String text)
+    public Items(int img, String text)
     {
         image_id = img;
         this.text = text;

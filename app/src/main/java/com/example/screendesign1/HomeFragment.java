@@ -1,18 +1,16 @@
 package com.example.screendesign1;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.screendesign1.adaptors.CustomGridAdaptor;
+import com.example.screendesign1.data.Items;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,14 +83,9 @@ public class HomeFragment extends Fragment {
 
         gridView.setAdapter(customAdapter);
 
-        Log.d("saioufe", "this is the grid view : " + gridView);
-        Log.d("saioufe", "grid count : " + customAdapter.getCount());
 
-//        for (CarDetail car : carDetailList) {
-//            // START LOADING IMAGES FOR EACH STUDENT
-//            car.loadImage(adapter);
-//        }
-        // Inflate the layout for this fragment
+
+
         return v;
     }
 }
