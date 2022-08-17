@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,13 +13,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.screendesign1.R;
 import com.example.screendesign1.data.Product;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class ProductsAdaptor extends RecyclerView.Adapter<ProductsAdaptor.ViewHolder> {
     private List<Product> products;
-    public  ProductsAdaptor(List<Product> prods) {
+
+    public ProductsAdaptor(List<Product> prods) {
         products = prods;
+        Picasso.get().setLoggingEnabled(true);
     }
 
 
@@ -44,8 +48,18 @@ public class ProductsAdaptor extends RecyclerView.Adapter<ProductsAdaptor.ViewHo
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
         textView.setText(product.getName());
-        Button button = holder.messageButton;
-        button.setText("Saif Maher Alnuaimi");
+
+        TextView textView2 = holder.priceTextView;
+        textView2.setText("$" + product.getPrice());
+
+        TextView textView3 = holder.recomTextView;
+        textView3.setText(product.getNumOfRecommandations() + "recommendations");
+
+        ImageView imageView = holder.imageImageView;
+
+
+        Picasso.get().load(product.getImage()).placeholder(R.drawable.product1).into(imageView);
+       // Glide.with(imageView).load(product.getImage()).into(imageView);
     }
 
     @Override
@@ -53,17 +67,22 @@ public class ProductsAdaptor extends RecyclerView.Adapter<ProductsAdaptor.ViewHo
         return products.size();
     }
 
-    public class ViewHolder extends  RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView nameTextView;
-        public Button messageButton;
+        public TextView priceTextView;
+        public TextView recomTextView;
+        public ImageView imageImageView;
 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            nameTextView = (TextView) itemView.findViewById(R.id.contact_name);
-            messageButton = (Button) itemView.findViewById(R.id.message_button);
+            nameTextView = (TextView) itemView.findViewById(R.id.product_title);
+            priceTextView = (TextView) itemView.findViewById(R.id.product_price);
+            recomTextView = (TextView) itemView.findViewById(R.id.product_rec);
+            imageImageView = (ImageView) itemView.findViewById(R.id.product_image);
+
         }
     }
 

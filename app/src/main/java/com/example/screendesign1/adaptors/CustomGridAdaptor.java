@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -37,6 +39,7 @@ public class CustomGridAdaptor extends ArrayAdapter<Items> {
             return items_list.size();
         }
 
+
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -49,6 +52,8 @@ public class CustomGridAdaptor extends ArrayAdapter<Items> {
                 v = inflater.inflate(custom_layout_id, null);
             }
 
+
+
             // initializing the imageview and textview and
             // setting data
             ImageView imageView = v.findViewById(R.id.grid_image);
@@ -60,6 +65,13 @@ public class CustomGridAdaptor extends ArrayAdapter<Items> {
 
             imageView.setImageResource(item.getImage_id());
             textView.setText(item.getText());
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(getContext(), item.getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
             return v;
         }
 }

@@ -61,7 +61,7 @@ public class FeedFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        products = Product.createProductsList(20);
+        products = Product.createProductsList(10);
 
         Log.d("saioufe" , "num of items in onCreate() : " + products.size());
     }
