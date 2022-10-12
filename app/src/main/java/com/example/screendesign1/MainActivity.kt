@@ -1,66 +1,42 @@
-package com.example.screendesign1;
+package com.example.screendesign1
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
+import com.example.screendesign1.R
+import com.example.screendesign1.HomeFragment
+import com.example.screendesign1.FeedFragment
 
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridLayout;
-import android.widget.GridView;
-import android.widget.ImageView;
-
-import com.example.screendesign1.adaptors.CustomGridAdaptor;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-
-
-    BottomNavigationView bottomNavigationView ;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-       // setContentView(mainLayout);
-
-
-        bottomNavigationView = findViewById(R.id.bottom_navigation_view);
-        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("");
-        setSupportActionBar(toolbar);
+class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
+   lateinit var bottomNavigationView: BottomNavigationView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        // setContentView(mainLayout);
+        bottomNavigationView = findViewById(R.id.bottom_navigation_view)
+        bottomNavigationView.setOnNavigationItemSelectedListener(this)
+        bottomNavigationView.setSelectedItemId(R.id.home)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = ""
+        setSupportActionBar(toolbar)
     }
 
-    HomeFragment homeFragment = new HomeFragment();
-    FeedFragment feedFragment = new FeedFragment();
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_container_fragment, homeFragment).commit();
-                return true;
-
-            default:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_container_fragment, feedFragment).commit();
-                return true;
+    var homeFragment = HomeFragment()
+    var feedFragment = FeedFragment()
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.home -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container_fragment, homeFragment).commit()
+                true
+            }
+            else -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container_fragment, feedFragment).commit()
+                true
+            }
         }
     }
 }
